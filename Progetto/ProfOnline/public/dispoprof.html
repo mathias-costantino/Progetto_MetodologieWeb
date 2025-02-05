@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!--javascript-->
+    <script defer src="js/richiedi_navbar.js"></script>
+    <script defer src="js/professori_lista.js"></script>
+    <script defer src="js/professori_manager.js"></script>
+    <script defer src="js/professori_app.js"></script>
+    <script defer src="js/professori.js"></script>
+
+    <title>ProfOnline</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="menunavbar">
+    </nav>
+      
+    <main>
+        <section class="jumbotron text-center">
+          <div class="container">
+            <h1 class="jumbotron-heading">Lezioni</h1>
+            <p class="lead text-muted" id="sottotitolo">Qui puoi inserire una tua lezione.</p>
+          </div>
+        </section>
+        
+        <div class="container">
+            <div class="row">
+                <form id="regprof" class="row g-3 needs-validation hspace_minus" action="http://localhost:3000/new_dispo" method="post" novalidate>
+                    <!-- Data della visita -->
+                    <div class="col-md-4">
+                        <label for="dv" class="form-label">Data della lezione*</label>
+                        <input type="date" id="dv" name="dv" class="form-control" required>
+                        <div class="valid-feedback">
+                        Perfetto!
+                        </div>
+                        <div class="invalid-feedback">
+                        Devi fornire una data valida per la visita, a partire da oggi in poi.
+                        </div>
+                    </div>
+                    <!-- Ora della visita -->
+                    <div class="col-md-4">
+                        <label for="ora" class="form-label">Orario della lezione*</label>
+                        <input type="time" id="ora" name="ora" min="09:00" max="19:00" class="form-control" required>
+                        <div class="valid-feedback">
+                        Perfetto!
+                        </div>
+                        <div class="invalid-feedback">
+                        Devi fornire un orario valido, compreso tra le 09:00 e le 19:00. E di almeno 2 ore successive.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="materia">Inserisci materia:*</label>
+                        <input type="text" class="form-control" name="materia" id="materia" placeholder="Materia" required>
+                        <div class="valid-feedback">
+                          Perfetto!
+                        </div>
+                        <div class="invalid-feedback">
+                          Devi fornire una materia
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                Dichiaro di fornire la mia disponibilit&agrave; per il giorno e l'ora indicati
+                            </label>
+                            <div class="invalid-feedback">
+                                Devi dichiarare prima di poter procedere.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary colore_btn" type="submit"> Inserisci disponibilit&agrave; </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br><br><br>
+    </main>
+
+    <!--footer-->
+    <!-- Footer -->
+    <footer class="page-footer font-small blue pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <div class="row">
+                <div class="col-md-6 mt-md-0 mt-3">
+                    <h5 class="text-uppercase">Prof Online</h5>
+                    <p>Cerca il tuo professore con cosi tanta semplicità. Basta cercare la tua materia e scegliere tra tanti prof.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="/"> ProfOnline</a>
+        </div>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+1QKtv3Rn7W3mgPxhU9K/ScQsAP7W3mgPxhUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const dateInput = document.getElementById('dv');
+            const timeInput = document.getElementById('ora');
+            const form = document.getElementById('regprof');
+            const today = new Date().toISOString().split('T')[0];
+
+            // Imposta la data minima a oggi
+            dateInput.setAttribute('min', today);
+
+            const updateMinTime = () => {
+                const now = new Date();
+                now.setHours(now.getHours() + 2);  // Aggiungi 2 ore all'orario corrente
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const minTime = `${hours}:${minutes}`;
+                return minTime;
+            };
+
+            const validateForm = (event) => {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                const now = new Date();
+                const selectedDate = new Date(dateInput.value);
+                const selectedTime = timeInput.value.split(':');
+                const selectedDateTime = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), selectedTime[0], selectedTime[1]);
+
+                now.setHours(now.getHours() + 2);
+                if (dateInput.value === today && selectedDateTime < now) {
+                    event.preventDefault();
+                    timeInput.setCustomValidity('L\'orario deve essere almeno di due ore successivo all\'orario attuale.');
+                    timeInput.reportValidity();
+                } else {
+                    timeInput.setCustomValidity('');
+                }
+
+                form.classList.add('was-validated');
+            };
+
+            // Imposta l'ora minima iniziale se la data è oggi
+            if (dateInput.value === today) {
+                timeInput.setAttribute('min', updateMinTime());
+            }
+
+            dateInput.addEventListener('input', function() {
+                if (dateInput.value === today) {
+                    timeInput.setAttribute('min', updateMinTime());
+                } else {
+                    timeInput.setAttribute('min', '09:00');
+                }
+            });
+
+            form.addEventListener('submit', validateForm);
+        });
+    </script>
+  </body>
+</html>
+

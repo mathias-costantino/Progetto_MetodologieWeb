@@ -1,0 +1,65 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel-item{
+    min-height:  600px;
+    background-size: cover;
+    background-position: center center;
+}
+
+svg{
+    width: 60px; /* Modifica le dimensioni dell'icona */
+    height: 60px;
+    margin-bottom: 20px; /* Aggiungi spazio sotto l'icona */
+    padding: auto;
+  }
+
+h1{
+    padding-top: 100px;
+    text-align: center; /* Centra il testo h1 */
+}
+
+footer{
+    background-color: #3385ff;
+    color: white;
+}
+
+footer a{
+    color: white;
+}
+
+.formcontainer {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    margin: 0 auto;
+}
+
+.formcontainerprenota {
+    max-width: 540px;
+    padding-top: 150px;
+    width: 100%;
+  padding-right: var(--bs-gutter-x,.75rem);
+  padding-left: var(--bs-gutter-x,.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.hspace_minus{
+	margin-top: 15%;
+}
+
+.abutton{
+    color: white;
+    text-decoration: none;
+}
+
+.abutton:hover{color:white; text-decoration: none;}
+
+hr{display: none;}
+

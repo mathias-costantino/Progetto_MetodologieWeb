@@ -1,0 +1,22 @@
+Credenziali utenti:
+
+---PROFESSORI---
+username: francogilberti
+password: francopass
+
+username: alessandrarossi
+password: alepass
+
+username: matteobianchi
+password: matteopass
+
+
+---STUDENTI---
+username: marcoverdi
+password: verdipass
+
+username: valeriamarroni
+password: valepass
+
+username: giannibrunetti
+password: giannipass
