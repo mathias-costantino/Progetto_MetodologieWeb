@@ -1,3 +1,0 @@
-Nella consegna, all'interno c'è la cartella ProfOnline senza la directory "node_modules", cosi è possibile effettuare un'installazione dei moduli necessari senza creare eventuali errori.
-
-Basta, da terminale, lanciare il comando "npm install" e successivamente il comando "node server.js" per avviare l'applicazione.
